@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html className={SpoqaHanSansNeo.className} lang="en">
       <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0; maximum-scale=1.0; minimum-scale=1.0; user-scalable=no;" />
       </Head>
       <body>
         <header className='flex justify-center items-center border-b-2 h-20'>
