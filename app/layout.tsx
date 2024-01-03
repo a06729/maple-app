@@ -19,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html className={SpoqaHanSansNeo.className} lang="en">
+    <html className={SpoqaHanSansNeo.className} lang="kr">
       <Head>
         <meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" />      </Head>
       <body>

@@ -8,11 +8,11 @@ import localFont from 'next/font/local'
 import {
     Card,
     CardContent,
-    CardDescription,
-    CardFooter,
     CardHeader,
-    CardTitle,
-  } from "@/components/ui/card"
+  } from "@/components/ui/card";
+
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+
 import StatArea from '../components/statArea';
 
 type baseCharcterInfo = {
@@ -137,27 +137,42 @@ export default async function searchPage({searchParams}:{searchParams: { [key: s
                         </div>
                     </CardContent>
                 </Card>
-                <Card className='mt-5'>
-                <CardHeader className={noto_Sans_KR.className}>
-                    <p className='text-[30px]'>스텟정보</p>
-                </CardHeader>
-                <CardContent>
-                    <div className='flex justify-center items-center'>
-                        <div className={noto_Sans_KR.className}>
-                            <p className='text-[30px]'>{powerDate[0].stat_name}:{powerDate[0].stat_value}</p>
-                        </div>
-                    </div>
-                    <div className='mt-11 grid grid-cols-3 gap-4 content-center max-md:grid-cols-2 max-sm:grid-cols-1'>
-		            {staeDate.final_stat?.map((value:Final_stateType, index:number) =>{
-                        if(value.stat_name!="전투력"){
-                            return(
-                                StatArea(index,value.stat_value,value.stat_name)
-                            );
-                        }
-                    } )}
-                    </div>
-                </CardContent>
-                </Card>
+                <Tabs defaultValue="state" className="mt-4 w-full">
+                <TabsList className='grid w-full grid-cols-2'>
+                    <TabsTrigger className={noto_Sans_KR.className} value="state">
+                        <span className='text-[16px]'>스텟정보</span>
+                    </TabsTrigger>
+                    <TabsTrigger className={noto_Sans_KR.className} value="item">
+                        <span className='text-[16px]'>장비</span>
+                    </TabsTrigger>
+                </TabsList>
+                <TabsContent value="state">
+                    <Card className='mt-5'>
+                        <CardHeader className={noto_Sans_KR.className}>
+                            <p className='text-[30px]'>스텟정보</p>
+                        </CardHeader>
+                        <CardContent>
+                            <div className='flex justify-center items-center'>
+                                <div className={noto_Sans_KR.className}>
+                                    <p className='text-[30px]'>{powerDate[0].stat_name}:{powerDate[0].stat_value}</p>
+                                </div>
+                            </div>
+                            <div className='mt-11 grid grid-cols-3 gap-4 content-center max-md:grid-cols-2 max-sm:grid-cols-1'>
+                            {staeDate.final_stat?.map((value:Final_stateType, index:number) =>{
+                                if(value.stat_name!="전투력"){
+                                    return(
+                                        StatArea(index,value.stat_value,value.stat_name)
+                                    );
+                                }
+                            } )}
+                            </div>
+                        </CardContent>
+                    </Card>
+                </TabsContent>
+                <TabsContent value="item">
+                    <p>준비중</p>
+                </TabsContent>
+                </Tabs>
             </div>
         );
     }else{
