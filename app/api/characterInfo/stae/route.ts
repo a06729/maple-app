@@ -33,18 +33,20 @@ export async function GET(request:Request) {
                 "x-nxopen-api-key":apiKey!
             }
         });
+        if(!res.ok){
+            throw Error(await res.text());
+        }
         const {date,character_class,final_stat}:statResponse=await res.json();
+        
         return NextResponse.json({
             date:date,
             character_class:character_class,
-            final_stat:final_stat
+            final_stat:final_stat,
+            status:res.status
         });
         
     }catch(e){
-
+        console.log(`스텟api 에러:${e}`);
+        
     }
-
-    return NextResponse.json({
-        hello:"world"
-    });
 }

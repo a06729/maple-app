@@ -39,7 +39,8 @@ type Final_stateType={
 type statResponse={
     date:string,
     character_class:string,
-    final_stat:Final_stateType[]
+    final_stat:Final_stateType[],
+    status:number
 }
 const noto_Sans_KR = Noto_Sans_KR({
     weight: '600',
@@ -65,11 +66,10 @@ export default async function searchPage({searchParams}:{searchParams: { [key: s
     //스텟 정보를 가져오는 함수
     async function staeUserData() {
         const res=await fetch(`${process.env.hostName}/api/characterInfo/stae?ocid=${searchParams.ocid}&year=${searchParams.year}&month=${searchParams.month}&day=${searchParams.day}`);
-
         if(!res.ok){
             throw new Error('Failed to fetch data');
         }
-        return res.json();
+        return await res.json();
     }
     //캐릭터 기본정보를 가져오는 변수
     const data:baseCharcterInfo = await getUserData();

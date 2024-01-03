@@ -34,12 +34,14 @@ export default function SearchBar(){
         //년도
         const year=kr_curr.getFullYear();
         //월
-        const month=kr_curr.getMonth();
+        const month=('0' + (kr_curr.getMonth() + 1)).slice(-2);
         //일
-        const day=kr_curr.getDate();
+        const day=('0' + (kr_curr.getDate()-1)).slice(-2);
+
+   
 
         //한국 시간기준 하루전 날짜 계산 변수
-        const beforDay=new Date(year, month, day - 1);
+        // const beforDay=new Date(year, month, day );
 
 
         //서버에서 캐릭터 고유아이디를 가져온다.
@@ -49,7 +51,7 @@ export default function SearchBar(){
         const {ocid,status}:{ocid:string,status:number}=await res.json();
         // console.log(`json:${ocid}`);
         if(status!=400){
-            router.push(`/search?ocid=${ocid}&year=${beforDay.getFullYear()}&month=${beforDay.getMonth()+1}&day=${beforDay.getDate()}`);
+            router.push(`/search?ocid=${ocid}&year=${year}&month=${month}&day=${day}`);
         }else{
             toast({
                 variant: "destructive",
