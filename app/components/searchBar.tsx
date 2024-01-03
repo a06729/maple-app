@@ -79,7 +79,7 @@ export default function SearchBar(){
                 <CardContent>
                     <div className="grid w-full  items-center gap-4">
                         <div className="flex items-center  flex-col space-y-1.5">
-                            <Input  onChange={onChange}  type="email" placeholder="닉네임" />  
+                            <Input  className='text-[18px]' onChange={onChange}  type="email" placeholder="닉네임" />  
                             <Button className='max-sm:w-[200px] w-[300px]' onClick={async ()=>{
                                 searchFetchApi();
                             }}>검색</Button>              
