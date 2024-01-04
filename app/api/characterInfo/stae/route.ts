@@ -47,6 +47,8 @@ export async function GET(request:Request) {
         
     }catch(e){
         console.log(`스텟api 에러:${e}`);
-        
+        return NextResponse.json({
+            status:400
+        },{status:400});
     }
 }

@@ -27,6 +27,7 @@ type baseCharcterInfo = {
     character_exp_rate:string,//현재 레벨에서 경험치 퍼센트
     character_guild_name:string,//캐릭터 소속 길드 명
     character_image:string//캐릭터 이미지 url
+    status:number //요청 상태값
 }
 
 //최종 스텟 정보 타입
@@ -56,37 +57,32 @@ export default async function searchPage({searchParams}:{searchParams: { [key: s
         
         //캐릭터 기본정보를 가져오기 위한 api
         const res = await fetch(`${process.env.hostName}/api/characterInfo?ocid=${searchParams.ocid}&year=${searchParams.year}&month=${searchParams.month}&day=${searchParams.day}`);    
-        
-        if (!res.ok) {
-          throw new Error('Failed to fetch data')
-        }
+
         return res.json();
       }
 
     //스텟 정보를 가져오는 함수
     async function staeUserData() {
         const res=await fetch(`${process.env.hostName}/api/characterInfo/stae?ocid=${searchParams.ocid}&year=${searchParams.year}&month=${searchParams.month}&day=${searchParams.day}`);
-        if(!res.ok){
-            throw new Error('Failed to fetch data');
-        }
-        return await res.json();
+        return res.json();
     }
     //캐릭터 기본정보를 가져오는 변수
     const data:baseCharcterInfo = await getUserData();
     //모든스텟 정보를 가져오는 변수
     const staeDate:statResponse=await staeUserData();
-    //전투력 정보 필터해서 가져오는 변수
-    const powerDate=staeDate.final_stat.filter((value,index)=>{
-        if(value.stat_name=="전투력"){
-            return {
-                stat_name:value.stat_name,
-                stat_value:value.stat_value
+
+    //api에서 400에러가 아니면 실행해라뜻
+    //api 날짜가 잘못 된거 일수도 있다.
+    if(data.status!=400){
+        //전투력 정보 필터해서 가져오는 변수
+        const powerDate=staeDate.final_stat.filter((value,index)=>{
+            if(value.stat_name=="전투력"){
+                return {
+                    stat_name:value.stat_name,
+                    stat_value:value.stat_value
+                }
             }
-        }
-    });
-    //캐릭터 이미지가 없다는것은 api에 캐릭정보가 업데이트가 안됬다는 것
-    //즉 이미지가 있는 캐릭터만 화면에 노출
-    if(data.character_image!=null){
+        });
         return(
             <div className='flex flex-col'>
                 <Card>
@@ -184,6 +180,7 @@ export default async function searchPage({searchParams}:{searchParams: { [key: s
                     <Ani404></Ani404>
                 </div>
                 <p className='text-[45px]'>캐릭터를 찾을수 없습니다.</p>
+                <p className='text-[20px]'>업데이트가 안되어 있을수 있으니 날짜 확인해 주세요</p>
             </div>
         )
     }

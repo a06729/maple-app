@@ -35,6 +35,9 @@ export async function GET(request:Request) {
                 "x-nxopen-api-key":apiKey!
             }
         });
+        if(!res.ok){
+            throw Error(`요청 실패:${res.status}`);
+        }
         const {
             date,character_name,world_name,
             character_gender,character_class,character_class_level,
@@ -56,7 +59,8 @@ export async function GET(request:Request) {
             status:res.status
         });
     }catch(error){
-        
+        console.log(error);
+        return NextResponse.json({status:400},{status:400});
     }
 
 }
