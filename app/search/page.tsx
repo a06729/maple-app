@@ -14,6 +14,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 import StatArea from '../components/statArea';
+import ItemArea from '../components/ItemArea';
 
 type baseCharcterInfo = {
     date:string,//조회시간
@@ -166,7 +167,7 @@ export default async function searchPage({searchParams}:{searchParams: { [key: s
                     </Card>
                 </TabsContent>
                 <TabsContent value="item">
-                    <p>준비중</p>
+                    <ItemArea ocid={searchParams.ocid} year={searchParams.year} month={searchParams.month} day={searchParams.day}/>
                 </TabsContent>
                 </Tabs>
             </div>

@@ -36,7 +36,7 @@ export default function SearchBar(){
         //월
         const month=('0' + (kr_curr.getMonth() + 1)).slice(-2);
         //일
-        const day=('0' + (kr_curr.getDate()-1)).slice(-2);
+        const day=('0' + (kr_curr.getDate()-2)).slice(-2);
 
    
 
