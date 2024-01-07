@@ -4,13 +4,10 @@ import { useRouter } from 'next/navigation'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { useToast } from "@/components/ui/use-toast"
-import { ToastAction } from "@/components/ui/toast"
 
 import {
     Card,
     CardContent,
-    CardDescription,
-    CardFooter,
     CardHeader,
     CardTitle,
   } from "@/components/ui/card"
@@ -72,17 +69,18 @@ export default function SearchBar(){
 
     return (
         <div className="flex items-center space-x-2">
-            <Card className="max-sm:w-[22rem] w-[30rem] ">
+            <Card className="max-sm:w-[22rem] w-[31rem] h-[15rem] ">
                 <CardHeader>
                     <CardTitle>캐릭터 검색</CardTitle>
                 </CardHeader>
                 <CardContent>
                     <div className="grid w-full  items-center gap-4">
-                        <div className="flex items-center  flex-col space-y-1.5">
+                        <div className="flex items-center  flex-col ">
                             <Input  className='text-[18px]' onChange={onChange}  type="email" placeholder="닉네임" />  
-                            <Button className='max-sm:w-[200px] w-[300px]' onClick={async ()=>{
+                            <Button className='max-sm:w-[200px] w-[300px] mt-4' onClick={async ()=>{
                                 searchFetchApi();
-                            }}>검색</Button>              
+                            }}>검색</Button>
+                            <p className='mt-[18px]'>2023년 12월 21일 점검 이후 접속한 캐릭터만 조회할 수 있습니다.</p>              
                         </div>
                     </div>
                 </CardContent>

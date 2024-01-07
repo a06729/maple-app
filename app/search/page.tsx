@@ -15,6 +15,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 import StatArea from '../components/statArea';
 import ItemArea from '../components/ItemArea';
+import SkillArea from '../components/skillArea';
 
 type baseCharcterInfo = {
     date:string,//조회시간
@@ -135,12 +136,15 @@ export default async function searchPage({searchParams}:{searchParams: { [key: s
                     </CardContent>
                 </Card>
                 <Tabs defaultValue="state" className="mt-4 w-full">
-                <TabsList className='grid w-full grid-cols-2'>
+                <TabsList className='grid grid-cols-3'>
                     <TabsTrigger className={noto_Sans_KR.className} value="state">
                         <span className='text-[16px]'>스텟정보</span>
                     </TabsTrigger>
                     <TabsTrigger className={noto_Sans_KR.className} value="item">
                         <span className='text-[16px]'>장비</span>
+                    </TabsTrigger>
+                    <TabsTrigger className={noto_Sans_KR.className} value="skill">
+                        <span className='text-[16px]'>스킬</span>
                     </TabsTrigger>
                 </TabsList>
                 <TabsContent value="state">
@@ -169,6 +173,12 @@ export default async function searchPage({searchParams}:{searchParams: { [key: s
                 <TabsContent value="item">
                     <ItemArea ocid={searchParams.ocid} year={searchParams.year} month={searchParams.month} day={searchParams.day}/>
                 </TabsContent>
+                <TabsContent value="skill">
+                    <SkillArea ocid={searchParams.ocid} 
+                    character_class_classname={data.character_class} 
+                    character_class_level={data.character_class_level}
+                    />
+                </TabsContent>
                 </Tabs>
             </div>
         );
@@ -181,7 +191,7 @@ export default async function searchPage({searchParams}:{searchParams: { [key: s
                     <Ani404></Ani404>
                 </div>
                 <p className='text-[45px]'>캐릭터를 찾을수 없습니다.</p>
-                <p className='text-[20px]'>업데이트가 안되어 있을수 있으니 날짜 확인해 주세요</p>
+                <p className='text-[20px]'>업데이트가 안되어 있을수 있으니 날짜 확인해 주세요.</p>
             </div>
         )
     }
