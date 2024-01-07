@@ -5,17 +5,43 @@ import {
     HoverCardContent,
     HoverCardTrigger,
   } from "@/components/ui/hover-card";
-import { useState,useCallback } from 'react';
+import { useState } from 'react';
 
 export default function SkillCard({value}:{value:skileType}){
+    const [openList, setOpenList] = useState<boolean[]>(Array(value.character_skill.length).fill(false));
+
+    // const handleOpenChange = (index: number) => {
+    //     setOpenList((prevOpenList) => {
+    //         const updatedOpenList = [...prevOpenList];
+    //         updatedOpenList[index] = !updatedOpenList[index];
+    //         return updatedOpenList;
+    //     });
+    // };
+    const handleOpenChange = (index: number) => {
+        setOpenList((prevOpenList) => {
+            const updatedOpenList = prevOpenList.map((_, i) => i === index ? !prevOpenList[i] : false);
+            return updatedOpenList;
+        });
+    };
+
+    const handleMouseEnter = (index: number) => {
+        setOpenList((prevOpenList) => {
+            const updatedOpenList = prevOpenList.map((_, i) => i === index ? true : false);
+            return updatedOpenList;
+        });
+    };
+
+    const handleMouseLeave = () => {
+        setOpenList((prevOpenList) => prevOpenList.map(() => false));
+    };
 
     return(
         <>
         {value.character_skill.map((value,index)=>{
             return (
                 <div className='flex justify-center' key={index}>
-                <HoverCard >
-                    <HoverCardTrigger  className='w-[32px]'  asChild>
+                <HoverCard open={openList[index]}>
+                    <HoverCardTrigger  className='w-[32px]'asChild onMouseEnter={() => handleMouseEnter(index)} onMouseLeave={handleMouseLeave} onTouchStart={() => handleOpenChange(index)}>
                         <div>
                             <div className='w-[50px] flex justify-center items-center relative'>
                                 <Image className='' src={value.skill_icon} width={60} height={60} alt='스킬아이콘'></Image>
