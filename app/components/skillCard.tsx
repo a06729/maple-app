@@ -15,7 +15,7 @@ export default function SkillCard({value}:{value:skileType}){
             return (
                 <div className='flex justify-center' key={index}>
                 <HoverCard >
-                    <HoverCardTrigger  className='w-[32px]'  asChild={true}>
+                    <HoverCardTrigger  className='w-[32px]'  asChild>
                         <div>
                             <div className='w-[50px] flex justify-center items-center relative'>
                                 <Image className='' src={value.skill_icon} width={60} height={60} alt='스킬아이콘'></Image>
