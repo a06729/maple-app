@@ -10,13 +10,6 @@ import { useState } from 'react';
 export default function SkillCard({value}:{value:skileType}){
     const [openList, setOpenList] = useState<boolean[]>(Array(value.character_skill.length).fill(false));
 
-    // const handleOpenChange = (index: number) => {
-    //     setOpenList((prevOpenList) => {
-    //         const updatedOpenList = [...prevOpenList];
-    //         updatedOpenList[index] = !updatedOpenList[index];
-    //         return updatedOpenList;
-    //     });
-    // };
     const handleOpenChange = (index: number) => {
         setOpenList((prevOpenList) => {
             const updatedOpenList = prevOpenList.map((_, i) => i === index ? !prevOpenList[i] : false);

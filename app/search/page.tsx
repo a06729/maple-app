@@ -16,6 +16,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import StatArea from '../components/statArea';
 import ItemArea from '../components/ItemArea';
 import SkillArea from '../components/skillArea';
+import UnionBorder from '../components/unionBorder';
 
 type baseCharcterInfo = {
     date:string,//조회시간
@@ -136,7 +137,7 @@ export default async function searchPage({searchParams}:{searchParams: { [key: s
                     </CardContent>
                 </Card>
                 <Tabs defaultValue="state" className="mt-4 w-full">
-                <TabsList className='grid grid-cols-3'>
+                <TabsList className='grid grid-cols-4'>
                     <TabsTrigger className={noto_Sans_KR.className} value="state">
                         <span className='text-[16px]'>스텟정보</span>
                     </TabsTrigger>
@@ -145,6 +146,9 @@ export default async function searchPage({searchParams}:{searchParams: { [key: s
                     </TabsTrigger>
                     <TabsTrigger className={noto_Sans_KR.className} value="skill">
                         <span className='text-[16px]'>스킬</span>
+                    </TabsTrigger>
+                    <TabsTrigger className={noto_Sans_KR.className} value="union">
+                        <span className='text-[16px]'>유니온</span>
                     </TabsTrigger>
                 </TabsList>
                 <TabsContent value="state">
@@ -178,6 +182,9 @@ export default async function searchPage({searchParams}:{searchParams: { [key: s
                     character_class_classname={data.character_class} 
                     character_class_level={data.character_class_level}
                     />
+                </TabsContent>
+                <TabsContent value="union">
+                        <UnionBorder ocid={searchParams.ocid}></UnionBorder>
                 </TabsContent>
                 </Tabs>
             </div>

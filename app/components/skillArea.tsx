@@ -15,7 +15,7 @@ export default async function SkillArea({ocid,character_class_classname,characte
         return res.json();
     }
     const baseSkile:skileApiType=await skileApi();
-    console.log(baseSkile.skileDataArr);
+    // console.log(baseSkile.skileDataArr);
     return (
         <div>
             {baseSkile.skileDataArr.map((value,index)=>{
