@@ -34,13 +34,15 @@ export default async function UnionBorder({ocid}:{ocid:string|string[]|undefined
               <div key={index} className="text-[1px] absolute w-[14px] h-[14px] bg-[rgb(210,183,153)] box-border" style={{
                 left:value.x,  
                 bottom:value.y,
-              }}>{value.class_name}</div>
+              }}></div>
           );
         });
     }
     return(
         <div className="flex justify-center items-center">            
-            <div className=" relative flex flex-wrap w-[308px] h-[280px] bg-black">
+            <div className=" relative flex flex-wrap w-[308px] h-[280px] " style={{
+              background:"linear-gradient(rgb(76, 79, 93) 0%, rgb(39, 40, 46) 100%)"
+            }}>
                 <Image className="top-0 left-0 absolute z-[1] w-full h-full" src="/images/outline-union-board.png" width={308} height={280} alt="유니온"></Image>
                 <div style={{}}>
                   {cellRender()}
