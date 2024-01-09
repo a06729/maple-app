@@ -39,14 +39,70 @@ export default async function UnionBorder({ocid}:{ocid:string|string[]|undefined
         });
     }
     return(
-        <div className="flex justify-center items-center">            
-            <div className=" relative flex flex-wrap w-[308px] h-[280px] " style={{
-              background:"linear-gradient(rgb(76, 79, 93) 0%, rgb(39, 40, 46) 100%)"
-            }}>
+        <div className="">            
+                <div className=" relative flex flex-wrap w-[308px] h-[280px] " style={{
+                  background:"linear-gradient(rgb(76, 79, 93) 0%, rgb(39, 40, 46) 100%)"
+                }}>
                 <Image className="top-0 left-0 absolute z-[1] w-full h-full" src="/images/outline-union-board.png" width={308} height={280} alt="유니온"></Image>
-                <div style={{}}>
-                  {cellRender()}
-                </div>
+                {cellRender()}
+                <div className=" absolute text-red-50 text-[10px] top-[80px] left-[170px]">INT</div>
+                <div className=" absolute text-red-50 text-[10px] top-[80px] left-[114px]">HP</div>
+                <div className=" absolute text-red-50 text-[10px]" style={{
+                  top:"108px",
+                  left:"200px"
+                }}>MP</div>
+                <div className=" absolute text-red-50 text-[10px]" style={{
+                  top:"108px",
+                  left:"80px"
+                }}>마력</div>
+                <div className=" absolute text-red-50 text-[10px]" style={{
+                  top:"157px",
+                  left:"80px"
+                }}>STR</div>
+                <div className=" absolute text-red-50 text-[10px]" style={{
+                  top:"157px",
+                  left:"200px"
+                }}>DEX</div>
+                <div className=" absolute text-red-50 text-[10px]" style={{
+                  top:"180px",
+                  left:"160px"
+                }}>공격력</div>
+                <div className=" absolute text-red-50 text-[10px]" style={{
+                  top:"180px",
+                  left:"100px"
+                }}>LUK</div>
+                <div className=" absolute text-red-50 text-[10px]" style={{
+                  top:"238px",
+                  left:"83px"
+                }}>버프지속시간</div>
+                <div className=" absolute text-red-50 text-[10px]" style={{
+                  top:"238px",
+                  left:"181px"
+                }}>일반데미지</div>
+                <div className=" absolute text-red-50 text-[10px]" style={{
+                  top:"188px",
+                  left:"253px"
+                }}>보스데미지</div>
+                <div className="text-center absolute text-red-50 text-[10px]" style={{
+                  top:"78px",
+                  left:"257px"
+                }}>크리트컬<br/>확률</div>
+                <div className="absolute text-red-50 text-[10px]" style={{
+                  top:"25px",
+                  left:"186px"
+                }}>획득경험치</div>
+                <div className="absolute text-red-50 text-[10px]" style={{
+                  top:"25px",
+                  left:"69px"
+                }}>상태이상 내성</div>
+                <div className="text-center absolute text-red-50 text-[10px]" style={{
+                  top:"70px",
+                  left:"13px"
+                }}>크리티컬<br/>데미지</div>
+                <div className="absolute text-red-50 text-[10px]" style={{
+                  top:"189px",
+                  left:"4px"
+                }}>방어율무시</div>
             </div>
 
         </div>
