@@ -184,7 +184,16 @@ export default async function searchPage({searchParams}:{searchParams: { [key: s
                     />
                 </TabsContent>
                 <TabsContent value="union">
-                        <UnionBorder ocid={searchParams.ocid}></UnionBorder>
+                        <div className='flex justify-center'>
+                            <Card className='w-[90%]'>
+                                <CardHeader className='border-b-2'>
+                                    <h3 className='text-[30px]'>유니온 공격대</h3>
+                                </CardHeader>
+                                <CardContent className='mt-[10px]'>
+                                    <UnionBorder ocid={searchParams.ocid}/>
+                                </CardContent>
+                            </Card>
+                        </div>
                 </TabsContent>
                 </Tabs>
             </div>

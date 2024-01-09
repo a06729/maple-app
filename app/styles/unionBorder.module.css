@@ -1,0 +1,35 @@
+.container{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.unionBorder{
+    margin-left: 10px;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    width: 308px;
+    height: 280px;
+    background: linear-gradient(rgb(76, 79, 93) 0%, rgb(39, 40, 46) 100%);
+}
+.decoration{
+    background:rgb(207, 209, 215);
+    width: 4px;
+    height: 4px;
+}
+
+
+@media (max-width: 1052px) {
+    .container{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .unionBorder{
+        margin-left: 0px;
+        margin-bottom: 20px;
+    }
+}

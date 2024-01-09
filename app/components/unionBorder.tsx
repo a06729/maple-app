@@ -1,18 +1,18 @@
 import Image from "next/image";
+import styles from '../styles/unionBorder.module.css';
+
 
 export default async function UnionBorder({ocid}:{ocid:string|string[]|undefined}){
-
     async function unionFetch(){
       const res=await fetch(`${process.env.hostName}/api/characterInfo/union?ocid=${ocid}`);
       const data:UnionApiType=await res.json();
       return data;
     }
 
-    async function cellRender(){
+    async function cellRender(unionJson:UnionApiType){
         const base_x=11
         const base_y=9
         const center = { x: 14*base_x, y: 14*base_y }; // 중앙 4칸 중 오른쪽 아래 칸
-        const unionJson=await unionFetch();
         const targetCoordinate:{x:number,y:number,class_name:string}[]=[];
         unionJson.union_block.map((value,index)=>{
           value.block_position.map((position,index)=>{
@@ -38,13 +38,13 @@ export default async function UnionBorder({ocid}:{ocid:string|string[]|undefined
           );
         });
     }
+    //유니온 정보 api 호출
+    const unionJson=await unionFetch();
     return(
-        <div className="">            
-                <div className=" relative flex flex-wrap w-[308px] h-[280px] " style={{
-                  background:"linear-gradient(rgb(76, 79, 93) 0%, rgb(39, 40, 46) 100%)"
-                }}>
+        <div className={styles.container}>  
+            <div className={styles.unionBorder}>
                 <Image className="top-0 left-0 absolute z-[1] w-full h-full" src="/images/outline-union-board.png" width={308} height={280} alt="유니온"></Image>
-                {cellRender()}
+                {cellRender(unionJson)}
                 <div className=" absolute text-red-50 text-[10px] top-[80px] left-[170px]">INT</div>
                 <div className=" absolute text-red-50 text-[10px] top-[80px] left-[114px]">HP</div>
                 <div className=" absolute text-red-50 text-[10px]" style={{
@@ -104,7 +104,32 @@ export default async function UnionBorder({ocid}:{ocid:string|string[]|undefined
                   left:"4px"
                 }}>방어율무시</div>
             </div>
+            <div className="ml-[2rem] grid grid-cols-2 gap-2">
+                <div>
+                  <h3>공격대원 효과</h3>
+                  {unionJson.union_raider_stat.map((value,index)=>{
+                    return(
+                      <div className="flex items-center gap-[6px]" key={index}>
+                        <span className={styles.decoration}></span>
+                        <p className="text-[14px]">{value}</p>
+                      </div>
+                    );
+                  })}
+                </div>
+                <div>
+                  <h3 >공격대 점령 효과</h3>
+                  {unionJson.union_occupied_stat.map((value,index)=>{
+                    return(
+                      <div className="flex items-center gap-[6px]" key={index}>
+                        <span className={styles.decoration}></span>
+                        <p className="text-[14px]">{value}</p>
+                      </div>
+                    );
+                  })}
+                </div>
 
+            </div>
+            
         </div>
     );
 }
