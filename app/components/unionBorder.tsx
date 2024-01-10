@@ -1,5 +1,6 @@
 import Image from "next/image";
 import styles from '../styles/unionBorder.module.css';
+import { union_class_img_data } from "@/lib/unionClassImgData";
 
 
 export default async function UnionBorder({ocid}:{ocid:string|string[]|undefined}){
@@ -104,7 +105,33 @@ export default async function UnionBorder({ocid}:{ocid:string|string[]|undefined
                   left:"4px"
                 }}>방어율무시</div>
             </div>
-            <div className="ml-[2rem] grid grid-cols-2 gap-2">
+            <div className="ml-[2rem] grid grid-cols-3 gap-2">
+                <div className={styles.unionClassContainer}>
+                    {unionJson.union_block.map((value,index)=>{
+                      console.log(value.block_class);
+                      const img_src=union_class_img_data[value.block_class].img;
+                      // return(<div key={index}>
+                      //   {value.block_class}
+                      // </div>);
+                      return(
+                        <div className="flex items-center" key={index}>
+                          {/* {value.block_class} */}
+                          <div className="mr-[5px]">
+                            <Image src={img_src} alt="캐릭터 이미지" width={32} height={32} style={{
+                              width:"32px",
+                              height:"32px",
+                              borderRadius:"8px",
+                              backgroundColor:"rgb(5 6 22)"
+                            }}></Image>
+                          </div>
+                          <div>
+                            <div className="text-[12px]">{value.block_class}</div>
+                            <div className="text-[12px]">{value.block_level}</div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                </div>
                 <div>
                   <h3>공격대원 효과</h3>
                   {unionJson.union_raider_stat.map((value,index)=>{
