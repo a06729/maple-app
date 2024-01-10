@@ -108,7 +108,6 @@ export default async function UnionBorder({ocid}:{ocid:string|string[]|undefined
             <div className="ml-[2rem] grid grid-cols-3 gap-2">
                 <div className={styles.unionClassContainer}>
                     {unionJson.union_block.map((value,index)=>{
-                      console.log(value.block_class);
                       const img_src=union_class_img_data[value.block_class].img;
                       // return(<div key={index}>
                       //   {value.block_class}
