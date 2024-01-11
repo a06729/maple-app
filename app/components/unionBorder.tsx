@@ -105,7 +105,7 @@ export default async function UnionBorder({ocid}:{ocid:string|string[]|undefined
                   left:"4px"
                 }}>방어율무시</div>
             </div>
-            <div className="ml-[2rem] grid grid-cols-3 gap-2">
+            <div className="ml-[2rem] grid grid-cols-3 gap-2 max-sm:flex flex-col">
                 <div className={styles.unionClassContainer}>
                     {unionJson.union_block.map((value,index)=>{
                       const img_src=union_class_img_data[value.block_class].img;

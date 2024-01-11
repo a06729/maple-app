@@ -27,7 +27,7 @@
 @media (max-width: 1392px) {
     .container{
         display: flex;
-        flex-direction: row;
+        /* flex-direction: row; */
         align-items: center;
         justify-content: center;
         flex-direction: column;
@@ -35,5 +35,7 @@
     .unionBorder{
         margin-left: 0px;
         margin-bottom: 20px;
+
     }
+    
 }
