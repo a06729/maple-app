@@ -4,13 +4,16 @@ import { useRouter } from 'next/navigation'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { useToast } from "@/components/ui/use-toast"
-
+import loadingSvg from '../../public/svg/Ellipsis-1.8s-200px.svg';
 import {
     Card,
     CardContent,
     CardHeader,
     CardTitle,
   } from "@/components/ui/card"
+import Image from 'next/image'
+
+
 
 
 export default function SearchBar(){
@@ -20,6 +23,7 @@ export default function SearchBar(){
     //서버 api 통신
     //검색한 유저 정보 가져오기 위한 api
     async function searchFetchApi() { 
+        setLoading(true);
         //현재 날짜 정보
         const curr = new Date();
         //utc 기준 정보
@@ -66,6 +70,7 @@ export default function SearchBar(){
     
     //검색창 값을 state로 관리하기 위한 것
     const [searchValue, setSearchValue] = useState<string>();
+    const [loading,setLoading]=useState<boolean>(false);
 
     return (
         <div className="flex items-center space-x-2">
@@ -79,7 +84,7 @@ export default function SearchBar(){
                             <Input  className='text-[18px]' onChange={onChange}  type="email" placeholder="닉네임" />  
                             <Button className='max-sm:w-[200px] w-[300px] mt-4' onClick={async ()=>{
                                 searchFetchApi();
-                            }}>검색</Button>
+                            }}>{loading ? <Image src={'/svg/loading.svg'} width={32} height={32} alt={''}></Image>:<div>검색</div>}</Button>
                             <p className='mt-[18px]'>2023년 12월 21일 점검 이후 접속한 캐릭터만 조회할 수 있습니다.</p>              
                         </div>
                     </div>
