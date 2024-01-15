@@ -95,9 +95,10 @@ export default async function searchPage({searchParams}:{searchParams: { [key: s
                     <CardContent className={SpoqaHanSansNeo.className}>
                         <div className='flex items-center max-sm:flex-col'>
                             <div className='flex mr-12 max-sm:mr-0'>
-                                <Suspense fallback={<Skeleton className="h-[300px] w-[300px]"/>}>
-                                    <Image src={data.character_image} alt={''} width={300} height={300}/>
-                                </Suspense>
+                                <Image src={data.character_image} alt={''} width={300} height={300}
+                                placeholder="blur"
+                                blurDataURL="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBAB  bWyZJf74GZgAAAABJRU5ErkJggg=="
+/>
                             </div>
                             <div className='flex justify-center flex-col w-[300px] max-sm:justify-normal'>
                                 <div className='flex items-center'>

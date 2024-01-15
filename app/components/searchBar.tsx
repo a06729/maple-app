@@ -54,6 +54,7 @@ export default function SearchBar(){
         if(status!=400){
             router.push(`/search?ocid=${ocid}&year=${year}&month=${month}&day=${day}`);
         }else{
+            setLoading(false);
             toast({
                 variant: "destructive",
                 description: "캐릭터 정보가 없습니다.",
