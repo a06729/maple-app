@@ -6,16 +6,15 @@ import {
     HoverCardTrigger,
   } from "@/components/ui/hover-card";
 import { useState } from 'react';
-import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Noto_Sans_KR } from 'next/font/google';
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
 const noto_Sans_KR = Noto_Sans_KR({
     weight: '600',
     subsets: ['latin'],
 });
 
-export default function SkillCard({value}:{value:skileType}){
-
-    const [openList, setOpenList] = useState<boolean[]>(Array(value.character_skill.length).fill(false));
+export default function LinkSkillCard({value}:{value:link_skill[]}){
+    const [openList, setOpenList] = useState<boolean[]>(Array(value.length).fill(false));
 
     const handleOpenChange = (index: number) => {
         setOpenList((prevOpenList) => {
@@ -38,10 +37,10 @@ export default function SkillCard({value}:{value:skileType}){
     return(
         <Card>
             <CardHeader>
-                <h4 className={noto_Sans_KR.className} style={{fontSize:"20px"}}>{value.character_skill_grade}차 스킬</h4>
+                <h4 className={noto_Sans_KR.className} style={{fontSize:"20px"}}>링크스킬</h4>
             </CardHeader>
             <CardContent className='grid grid-cols-4 gap-4'>
-                {value.character_skill.map((value,index)=>{
+                {value.map((value,index)=>{
                     return (
                         <div className='flex justify-center' key={index}>
                         <HoverCard open={openList[index]}>
@@ -75,5 +74,6 @@ export default function SkillCard({value}:{value:skileType}){
                 })}
             </CardContent>
         </Card>
-    );
+        );
+
 }

@@ -19,9 +19,9 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html className={SpoqaHanSansNeo.className} lang="kr">
+    <html lang="kr">
       <Head>
-        <meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" />      </Head>
+        <meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" /></Head>
       <body>
         <header className='flex justify-center items-center border-b-2 h-20'>
             <div className='max-sm:space-x-16 space-x-32'>
