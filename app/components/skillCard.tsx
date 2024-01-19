@@ -44,19 +44,18 @@ export default function SkillCard({value}:{value:skileType}){
                     </HoverCardTrigger>
                     <HoverCardContent className='w-[400px]'>
                         <div className='flex justify-center'>
-                            <div className='mr-3'>
-                                <Image src={value.skill_icon} width={200} height={200} alt='스킬아이콘'></Image>
+                            <div className='w=[10%] mr-3'>
+                                <Image src={value.skill_icon} width={100} height={100} alt='스킬아이콘'></Image>
                             </div>
-                            <div>
+                            <div className='w-[90%]'>
                                 <span>{value.skill_name}</span>
                                 <br />
                                 <span className='font-[12px]'>{value.skill_description}</span>
                                 <br />
                             </div>
                         </div>
-                        <div>
+                        <div className='border-t-2 mt-1'>
                         <span className='font-[12px]'>{value.skill_effect}</span>
-
                         </div>
                     </HoverCardContent>
                 </HoverCard>
