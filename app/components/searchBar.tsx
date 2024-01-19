@@ -12,6 +12,7 @@ import {
     CardTitle,
   } from "@/components/ui/card"
 import Image from 'next/image'
+import { nowDataFn } from '@/lib/dataFn'
 
 
 
@@ -25,20 +26,20 @@ export default function SearchBar(){
     async function searchFetchApi() { 
         setLoading(true);
         //현재 날짜 정보
-        const curr = new Date();
-        //utc 기준 정보
-        const utc = curr.getTime() + (curr.getTimezoneOffset() * 60 * 1000);
-        //한국시간 계산하기 위한 변수
-        const KR_TIME_DIFF = 9 * 60 * 60 * 1000;
-        //현재 한국 시간
-        const kr_curr = new Date(utc + (KR_TIME_DIFF));
-        //년도
-        const year=kr_curr.getFullYear();
-        //월
-        const month=('0' + (kr_curr.getMonth() + 1)).slice(-2);
-        //일
-        const day=('0' + (kr_curr.getDate()-2)).slice(-2);
-
+        // const curr = new Date();
+        // //utc 기준 정보
+        // const utc = curr.getTime() + (curr.getTimezoneOffset() * 60 * 1000);
+        // //한국시간 계산하기 위한 변수
+        // const KR_TIME_DIFF = 9 * 60 * 60 * 1000;
+        // //현재 한국 시간
+        // const kr_curr = new Date(utc + (KR_TIME_DIFF));
+        // //년도
+        // const year=kr_curr.getFullYear();
+        // //월
+        // const month=('0' + (kr_curr.getMonth() + 1)).slice(-2);
+        // //일
+        // const day=('0' + (kr_curr.getDate()-2)).slice(-2);
+        const {year,month,day}=nowDataFn();
    
 
         //한국 시간기준 하루전 날짜 계산 변수
