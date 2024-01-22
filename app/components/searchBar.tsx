@@ -69,6 +69,16 @@ export default function SearchBar(){
         const {value,name} =e.target;
         inputRef.current!.value=value;
     }
+
+    async function onKeyDownHandler(e: React.KeyboardEvent){
+        if (e.nativeEvent.isComposing) return;
+        if (e.key === 'Enter') {
+            inputRef.current?.blur();
+            const keyword=inputRef.current!.value;
+            await searchFetchApi(keyword); // 작성한 댓글 post 요청하는 함수 
+        }
+    }
+
     
     //검색창 값을 state로 관리하기 위한 것
     // const [searchValue, setSearchValue] = useState<string>();
@@ -84,16 +94,10 @@ export default function SearchBar(){
                 <CardContent>
                     <div className="grid w-full  items-center gap-4">
                         <div className="flex items-center  flex-col ">
-                            <Input  className='text-[18px]' ref={inputRef}  onChange={onChange} onKeyDown={(e: React.KeyboardEvent)=>{
-                                if (e.key === 'Enter') {
-                                    inputRef.current?.blur();
-                                    const keyword=inputRef.current!.value;
-                                    searchFetchApi(keyword); // 작성한 댓글 post 요청하는 함수 
-                                }
-                            }}  type="email" placeholder="닉네임" />  
+                            <Input  className='text-[18px]' ref={inputRef}  onChange={onChange} onKeyDown={onKeyDownHandler}  type="email" placeholder="닉네임" />  
                             <Button className='max-sm:w-[200px] w-[300px] mt-4' onClick={async ()=>{
                                 const keyword=inputRef.current!.value;
-                                searchFetchApi(keyword);
+                                await searchFetchApi(keyword);
                             }}>{loading ? <Image src={'/svg/loading.svg'} width={32} height={32} alt={''}></Image>:<div>검색</div>}</Button>
                             <p className='mt-[18px]'>2023년 12월 21일 점검 이후 접속한 캐릭터만 조회할 수 있습니다.</p>              
                         </div>
