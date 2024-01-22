@@ -1,5 +1,5 @@
 'use client'
-import {useState } from 'react'
+import {useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -23,7 +23,7 @@ export default function SearchBar(){
     
     //서버 api 통신
     //검색한 유저 정보 가져오기 위한 api
-    async function searchFetchApi() { 
+    async function searchFetchApi(searchValue:string) { 
         setLoading(true);
         //현재 날짜 정보
         // const curr = new Date();
@@ -67,12 +67,13 @@ export default function SearchBar(){
     //인풋 값 변경시 변경해주는 함수
     function onChange(e:React.ChangeEvent<HTMLInputElement>){
         const {value,name} =e.target;
-        setSearchValue(value);
+        inputRef.current!.value=value;
     }
     
     //검색창 값을 state로 관리하기 위한 것
-    const [searchValue, setSearchValue] = useState<string>();
+    // const [searchValue, setSearchValue] = useState<string>();
     const [loading,setLoading]=useState<boolean>(false);
+    const inputRef=useRef<HTMLInputElement>(null);
 
     return (
         <div className="flex items-center space-x-2">
@@ -83,13 +84,16 @@ export default function SearchBar(){
                 <CardContent>
                     <div className="grid w-full  items-center gap-4">
                         <div className="flex items-center  flex-col ">
-                            <Input  className='text-[18px]' onChange={onChange} onKeyDown={(e: React.KeyboardEvent)=>{
+                            <Input  className='text-[18px]' ref={inputRef}  onChange={onChange} onKeyDown={(e: React.KeyboardEvent)=>{
                                 if (e.key === 'Enter') {
-                                    searchFetchApi(); // 작성한 댓글 post 요청하는 함수 
+                                    inputRef.current?.blur();
+                                    const keyword=inputRef.current!.value;
+                                    searchFetchApi(keyword); // 작성한 댓글 post 요청하는 함수 
                                 }
                             }}  type="email" placeholder="닉네임" />  
                             <Button className='max-sm:w-[200px] w-[300px] mt-4' onClick={async ()=>{
-                                searchFetchApi();
+                                const keyword=inputRef.current!.value;
+                                searchFetchApi(keyword);
                             }}>{loading ? <Image src={'/svg/loading.svg'} width={32} height={32} alt={''}></Image>:<div>검색</div>}</Button>
                             <p className='mt-[18px]'>2023년 12월 21일 점검 이후 접속한 캐릭터만 조회할 수 있습니다.</p>              
                         </div>
