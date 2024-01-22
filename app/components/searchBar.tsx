@@ -83,7 +83,11 @@ export default function SearchBar(){
                 <CardContent>
                     <div className="grid w-full  items-center gap-4">
                         <div className="flex items-center  flex-col ">
-                            <Input  className='text-[18px]' onChange={onChange}  type="email" placeholder="닉네임" />  
+                            <Input  className='text-[18px]' onChange={onChange} onKeyDown={(e: React.KeyboardEvent)=>{
+                                if (e.key === 'Enter') {
+                                    searchFetchApi(); // 작성한 댓글 post 요청하는 함수 
+                                }
+                            }}  type="email" placeholder="닉네임" />  
                             <Button className='max-sm:w-[200px] w-[300px] mt-4' onClick={async ()=>{
                                 searchFetchApi();
                             }}>{loading ? <Image src={'/svg/loading.svg'} width={32} height={32} alt={''}></Image>:<div>검색</div>}</Button>
